@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utkarsh Tripathi - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chosen Palette: A professional, cool color palette based on https://coolors.co/palette/bee9e8-62b6cb-1b4965-cae9ff-5fa8d3 -->
+    <!-- Application Structure Plan: A single-page application with a fixed sidebar for navigation. This structure allows non-linear exploration of the CV, enabling recruiters to quickly jump to the sections most relevant to them (e.g., Skills, Projects). The flow is intuitive: land, get a summary, and explore details via clear navigation. This modern, direct approach is more user-friendly than a traditional linear document and aligns with a dynamic, digital-native aesthetic. -->
+    <!-- Visualization & Content Choices: Skills are presented in categorized lists with bold text for high contrast. Experience and projects use a clean card format with subtle shadows and hover effects for a modern, interactive feel. Certifications are in a grid for space efficiency. All elements are designed with a cool-toned theme and softened corners to feel current and dynamic, without sacrificing readability. CONFIRMING NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #BEE9E8; /* Pale Cyan background */
+            color: #1B4965; /* Prussian Blue for text */
+        }
+        .nav-link.active {
+            background-color: #5FA8D3; /* Sky Blue for active link background */
+            color: #CAE9FF; /* Light Cyan for active link text */
+            box-shadow: 0 0 15px rgba(95, 168, 211, 0.5);
+        }
+        .nav-link:hover {
+            background-color: #5FA8D3; /* Sky Blue for hover background */
+            color: #1B4965; /* Prussian Blue for hover text */
+        }
+        .section-card {
+            background-color: #1B4965; /* Prussian Blue for cards */
+            color: #CAE9FF; /* Light Cyan for card text */
+            border: none;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+        .list-item {
+            background-color: #62B6CB; /* Cerulean for list items */
+            color: #1B4965; /* Prussian Blue for list text */
+        }
+    </style>
+</head>
+<body class="flex">
+
+    <!-- Sidebar Navigation -->
+    <!-- Redesigned navigation to use flexbox for better spacing control -->
+    <nav id="sidebar" class="hidden lg:flex flex-col justify-between w-64 bg-[#1B4965] text-white h-screen fixed top-0 left-0 p-6 shadow-2xl">
+        <div>
+            <div class="text-center mb-10">
+                <!-- Profile Image -->
+                <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden ring-2 ring-[#CAE9FF] shadow-lg">
+                    <img src="https://placehold.co/96x96/62B6CB/1B4965?text=UT" alt="Profile Picture" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-2xl font-bold">Utkarsh Tripathi</h1>
+                <p class="text-sm text-[#5FA8D3]">Aspiring Technical Professional</p>
+            </div>
+            <!-- Increased spacing between nav links -->
+            <ul id="nav-menu" class="space-y-6">
+                <li><a href="#summary" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Professional Summary</a></li>
+                <li><a href="#skills" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Core Competencies</a></li>
+                <li><a href="#experience" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Experience</a></li>
+                <li><a href="#projects" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Projects</a></li>
+                <li><a href="#certifications" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Certifications</a></li>
+                <li><a href="#education" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Education</a></li>
+            </ul>
+        </div>
+        <!-- Removed Connect Me section from here -->
+    </nav>
+    
+    <!-- Mobile Header -->
+    <header class="lg:hidden fixed top-0 left-0 right-0 bg-[#1B4965] text-white p-4 z-50 shadow-lg">
+         <h1 class="text-xl font-bold text-center">Utkarsh Tripathi's Portfolio</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 w-full p-6 md:p-10 lg:p-12 mt-16 lg:mt-0">
+
+        <!-- Banner Section -->
+        <section class="relative">
+            <!-- Banner Image Container -->
+            <div class="w-full h-64 md:h-80 overflow-hidden rounded-2xl shadow-lg">
+                <img src="https://sectraprodstorage01.blob.core.windows.net/medical-uploads/sites/3/2022/05/hero-web-cloud-article.jpg" 
+                     alt="Professional Portfolio Banner Image" 
+                     class="w-full h-full object-cover">
+            </div>
+        </section>
+
+        <!-- Professional Summary Section -->
+        <section id="summary" class="mb-12 min-h-screen flex items-center">
+            <div class="w-full">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Professional Summary ✨</h2>
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <p class="text-lg md:text-xl leading-relaxed mb-4 text-[#CAE9FF]">
+                        A highly motivated and adaptable BCA student with a strong foundation in computer science and a 
+                        growing expertise in data science and machine learning. Through academic projects and dedicated 
+                        training, I have developed a comprehensive understanding of the data lifecycle, from data manipulation
+                        to model deployment. I am passionate about applying my technical knowledge and problem-solving skills
+                        to create impactful solutions.
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-[#CAE9FF]">
+                        <li>Foundational understanding of programming languages: Python, C++, and JavaScript.</li>
+                        <li>Practical experience with data analysis and machine learning libraries like Pandas, NumPy, and Scikit-learn.</li>
+                        <li>Skilled in developing and deploying machine learning models for classification and regression tasks.</li>
+                        <li>Strong ability to communicate complex data findings through clear and compelling visualizations.</li>
+                        <li>Eager to contribute to a collaborative, fast-paced team environment and apply my skills to real-world challenges.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Competencies Section -->
+        <section id="skills" class="mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Core Competencies 🛠️</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4 text-[#CAE9FF]">Technical Skills</h3>
+                    <ul class="space-y-3">
+                        <li class="p-3 list-item rounded-lg"><strong>Hardware & Networking:</strong> Practical knowledge of hardware components and network troubleshooting.</li>
+                        <li class="p-3 list-item rounded-lg"><strong>Troubleshooting:</strong> Ability to diagnose and resolve technical issues related to software and hardware.</li>
+                        <li class="p-3 list-item rounded-lg"><strong>Remote Tools:</strong> Knowledge of using remote access tools for support.</li>
+                        <li class="p-3 list-item rounded-lg"><strong>Software Adaptation:</strong> Quick to learn and adapt to new software tools.</li>
+                        <li class="p-3 list-item rounded-lg"><strong>Programming:</strong> Foundational understanding of Python, C++, C, JavaScript.</li>
+                        <li class="p-3 list-item rounded-lg"><strong>Project Management:</strong> Practical knowledge of Jira for project and task management.</li>
+                    </ul>
+                </div>
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4 text-[#CAE9FF]">Soft Skills</h3>
+                     <ul class="space-y-3">
+                        <li class="p-3 list-item rounded-lg"><strong>Communication:</strong> Excellent verbal and written skills for client interactions.</li>
+                        <li class="p-3 list-item rounded-lg"><strong>Problem-Solving:</strong> Strong ability to analyze problems and find effective solutions.</li>
+                        <li class="p-3 list-item rounded-lg"><strong>Teamwork:</strong> Proven team player, willing to work with cross-functional teams.</li>
+                        <li class="p-3 list-item rounded-lg"><strong>Multitasking & Organization:</strong> Skilled in managing multiple tasks and responsibilities.</li>
+                        <li class="p-3 list-item rounded-lg"><strong>Critical Thinking & Decision Making:</strong> Ability to make sound decisions under pressure.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Experience 💼</h2>
+            <div class="space-y-8">
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold">Event Coordinator - "Ad-mad Show"</h3>
+                    <p class="text-md text-[#CAE9FF] mb-2">College Feasta 2k25 | [Date of Event - Day, Month, 2025]</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Managed all logistical and operational aspects of a college event, demonstrating organizational and multitasking skills.</li>
+                        <li>Communicated effectively with participants and internal teams to ensure a smooth and successful event.</li>
+                    </ul>
+                </div>
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold">Member - IT Club</h3>
+                    <p class="text-md text-[#CAE9FF] mb-2">IINTM College, Delhi | [Start Date] - Present</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Actively participates in club activities, contributing to discussions and technical events.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Projects 🚀</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Weather App Project -->
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold">Weather App</h3>
+                    <p class="text-md text-[#CAE9FF] my-2">A web application that provides real-time weather updates for any location, showcasing skills in web development and API integration.</p>
+                    <div class="flex flex-wrap gap-4 mt-4">
+                        <a href="#" target="_blank" class="inline-block bg-[#5FA8D3] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#62B6CB] transition-colors duration-300">
+                            Live Deployment
+                        </a>
+                        <a href="#" target="_blank" class="inline-block bg-[#62B6CB] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#5FA8D3] transition-colors duration-300">
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+                <!-- California House Price Prediction Project -->
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold">California House Price Prediction</h3>
+                    <p class="text-md text-[#CAE9FF] my-2">A machine learning model developed to predict house prices in California, demonstrating expertise in data analysis, feature engineering, and regression algorithms.</p>
+                    <div class="flex flex-wrap gap-4 mt-4">
+                        <a href="https://californiahousepricepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="inline-block bg-[#5FA8D3] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#62B6CB] transition-colors duration-300">
+                            Live Deployment
+                        </a>
+                        <a href="https://github.com/UtkarshTripathi-teach/California_House_Price_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="inline-block bg-[#62B6CB] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#5FA8D3] transition-colors duration-300">
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+                <!-- Heart Disease Prediction ML Model Project -->
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold">Heart Disease Prediction ML Model</h3>
+                    <p class="text-md text-[#CAE9FF] my-2">Developed a machine learning model using Python and relevant libraries, highlighting foundational skills in Python programming and data analysis.</p>
+                    <div class="flex flex-wrap gap-4 mt-4">
+                        <a href="https://github.com/UtkarshTripathi-teach/Heart_Disease_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="inline-block bg-[#62B6CB] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#5FA8D3] transition-colors duration-300">
+                            View on GitHub
+                        </a>
+                        <a href="https://heartdiseasepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="inline-block bg-[#5FA8D3] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#62B6CB] transition-colors duration-300">
+                            Live Deployment
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Certifications 📜</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Data Science using Python Training<span class="block text-xs text-[#1B4965]">IITM & GRAStech | Aug 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Deloitte Australia - Technology Job Simulation<span class="block text-xs text-[#1B4965]">Forage | Jul 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">How to create a Jira SCRUM project<span class="block text-xs text-[#1B4965]">Coursera | Jul 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Intro to Generative AI Learning Path<span class="block text-xs text-[#1B4965]">Google Cloud | Jul 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Introduction to Generative AI<span class="block text-xs text-[#1B4965]">ULSA | Jul 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Introduction to Large Language Models<span class="block text-xs text-[#1B4965]">ULSA | Jul 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">SketchUp: 3D modeling<span class="block text-xs text-[#1B4965]">Coursera | Jul 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">NLP and Text Mining<span class="block text-xs text-[#1B4965]">Simplilearn | Jun 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Innovating with Google Cloud AI<span class="block text-xs text-[#1B4965]">Simplilearn | Apr 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Certificate in AI and ML<span class="block text-xs text-[#1B4965]">Upskill | Apr 2025</span></div>
+                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Certificate in Advanced Excel<span class="block text-xs text-[#1B4965]">IINTM College | Jan 2025</span></div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Education 🎓</h2>
+             <div class="space-y-8">
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold">Bachelor of Computer Applications (BCA)</h3>
+                    <p class="text-md text-[#CAE9FF] mb-2">IINTM, Janakpuri, Delhi (GGSIPU) | Expected 2026</p>
+                    <p class="mt-2 text-[#CAE9FF]"><strong>Relevant Coursework:</strong> Data Structures, OOP, C++, HTML, CSS, JavaScript, C, DBMS, SQL, Computer Networks, Python, AI, Java.</p>
+                </div>
+                <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold">Class 12th (PCM)</h3>
+                    <p class="text-md text-[#CAE9FF] mb-2">Little Flower School, Harriya, Basti, UP | 2022</p>
+                </div>
+                 <div class="section-card p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold">Class 10th</h3>
+                    <p class="text-md text-[#CAE9FF] mb-2">Little Flower School, Harriya, Basti, UP | 2020</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connect Me Section -->
+        <section id="connect" class="my-12">
+            <div class="text-center text-[#1B4965] text-sm">
+                <h3 class="text-3xl font-bold text-[#1B4965] mb-4">Connect Me</h3>
+                <!-- Social Media Buttons -->
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-6 justify-center">
+                    <!-- LinkedIn Button -->
+                    <a href="https://www.linkedin.com/in/utkarsh-tripathi-94080335b/" target="_blank" class="flex items-center space-x-2 bg-[#62B6CB] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#5FA8D3] transition-colors duration-300 justify-center">
+                        <i class="fab fa-linkedin"></i>
+                        <span class="font-semibold">LinkedIn</span>
+                    </a>
+                    <!-- X (Twitter) Button -->
+                    <a href="https://x.com/Utkarsh_atX" target="_blank" class="flex items-center space-x-2 bg-[#62B6CB] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#5FA8D3] transition-colors duration-300 justify-center">
+                        <i class="fab fa-x-twitter"></i>
+                        <span class="font-semibold">X</span>
+                    </a>
+                    <!-- GitHub Button -->
+                    <a href="https://github.com/UtkarshTripathi-teach" target="_blank" class="flex items-center space-x-2 bg-[#62B6CB] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#5FA8D3] transition-colors duration-300 justify-center">
+                        <i class="fab fa-github"></i>
+                        <span class="font-semibold">GitHub</span>
+                    </a>
+                    <!-- Email Me Button -->
+                     <a href="mailto:tripathiutkarsh.tech@outlook.com" class="flex items-center space-x-2 bg-[#62B6CB] text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 shadow-lg hover:bg-[#5FA8D3] justify-center">
+                        📧
+                        <span>Email Me</span>
+                    </a>
+                </div>
+                <div class="text-md font-semibold text-[#1B4965]">
+                    <p>tripathiutkarsh.tech@outlook.com</p>
+                    <p>Delhi, India</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="w-full text-center py-8">
+            <p class="text-[#1B4965] text-sm">Designed and developed by Utkarsh Tripathi</p>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sidebar = document.getElementById('sidebar');
+
+            const options = {
+                rootMargin: '-50% 0px -50% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Set initial active link for the first section
+            if (navLinks.length > 0) {
+                 navLinks[0].classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
