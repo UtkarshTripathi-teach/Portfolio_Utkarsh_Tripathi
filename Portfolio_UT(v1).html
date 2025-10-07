@@ -3,296 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utkarsh Tripathi - Portfolio</title>
+    <title>Utkarsh Tripathi - Creative Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome for social media icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Chosen Palette: A professional, cool color palette based on https://coolors.co/palette/bee9e8-62b6cb-1b4965-cae9ff-5fa8d3 -->
-    <!-- Application Structure Plan: A single-page application with a fixed sidebar for navigation. This structure allows non-linear exploration of the CV, enabling recruiters to quickly jump to the sections most relevant to them (e.g., Skills, Projects). The flow is intuitive: land, get a summary, and explore details via clear navigation. This modern, direct approach is more user-friendly than a traditional linear document and aligns with a dynamic, digital-native aesthetic. -->
-    <!-- Visualization & Content Choices: Skills are presented in categorized lists with bold text for high contrast. Experience and projects use a clean card format with subtle shadows and hover effects for a modern, interactive feel. Certifications are in a grid for space efficiency. All elements are designed with a cool-toned theme and softened corners to feel current and dynamic, without sacrificing readability. CONFIRMING NO SVG/Mermaid. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- Design Inspiration: Minimalist, high-contrast monochrome design with a single sharp accent. Full-screen scroll-snap layout maintained. -->
     <style>
+        :root {
+            /* Using CSS variables for a sharp, high-contrast Light Theme + Coral Accent */
+            --bg-color: #FFFFFF; /* Pure White - Used for default body background */
+            --text-color: #111827; /* Very Dark Gray/Black */
+            --accent-color: #FF6B6B; /* Vibrant Coral/Red Accent */
+            --secondary-text-color: #6B7280; /* Medium Gray */
+            --card-bg-color: #F9FAFB; /* Slightly off-white card background */
+            --dark-card-text: #111827; /* Dark text for light cards */
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #BEE9E8; /* Pale Cyan background */
-            color: #1B4965; /* Prussian Blue for text */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            /* Key structural feature: Full-screen sections snap into place */
+            scroll-snap-type: y mandatory;
+            overflow-x: hidden;
         }
-        .nav-link.active {
-            background-color: #5FA8D3; /* Sky Blue for active link background */
-            color: #CAE9FF; /* Light Cyan for active link text */
-            box-shadow: 0 0 15px rgba(95, 168, 211, 0.5);
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            scroll-snap-align: start;
+            padding: 2rem;
+            /* Ensure section backgrounds override body background */
+            transition: background-color 0.3s ease;
         }
-        .nav-link:hover {
-            background-color: #5FA8D3; /* Sky Blue for hover background */
-            color: #1B4965; /* Prussian Blue for hover text */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
-        .section-card {
-            background-color: #1B4965; /* Prussian Blue for cards */
-            color: #CAE9FF; /* Light Cyan for card text */
-            border: none;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .heading-section {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.05em;
+            font-weight: 900; /* Extra bold for impact */
+            color: var(--text-color);
         }
-        .section-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+
+        @media (min-width: 768px) {
+            .heading-section {
+                font-size: 7rem;
+            }
         }
-        .list-item {
-            background-color: #62B6CB; /* Cerulean for list items */
-            color: #1B4965; /* Prussian Blue for list text */
+        
+        .card {
+            background-color: var(--card-bg-color);
+            color: var(--dark-card-text);
+            border: 1px solid #E5E5E5;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+            border-color: var(--accent-color);
+        }
+
+        /* Modal-specific styles - adapted for the light theme */
+        .modal-overlay {
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+        .modal-content {
+            background-color: var(--card-bg-color);
+        }
+
+        /* Styles for the right-side vertical navigation */
+        .vertical-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .nav-dot {
+            width: 0.8rem;
+            height: 0.8rem;
+            background-color: var(--secondary-text-color);
+            border: 2px solid var(--secondary-text-color);
+            background-color: transparent;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+        .nav-dot.active {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: scale(1.2);
         }
     </style>
 </head>
-<body class="flex">
+<body>
 
-    <!-- Sidebar Navigation -->
-    <!-- Redesigned navigation to use flexbox for better spacing control -->
-    <nav id="sidebar" class="hidden lg:flex flex-col justify-between w-64 bg-[#1B4965] text-white h-screen fixed top-0 left-0 p-6 shadow-2xl">
-        <div>
-            <div class="text-center mb-10">
-                <!-- Profile Image -->
-                <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden ring-2 ring-[#CAE9FF] shadow-lg">
-                    <img src="https://placehold.co/96x96/62B6CB/1B4965?text=UT" alt="Profile Picture" class="w-full h-full object-cover">
-                </div>
-                <h1 class="text-2xl font-bold">Utkarsh Tripathi</h1>
-                <p class="text-sm text-[#5FA8D3]">Aspiring Technical Professional</p>
-            </div>
-            <!-- Increased spacing between nav links -->
-            <ul id="nav-menu" class="space-y-6">
-                <li><a href="#summary" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Professional Summary</a></li>
-                <li><a href="#skills" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Core Competencies</a></li>
-                <li><a href="#experience" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Experience</a></li>
-                <li><a href="#projects" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Projects</a></li>
-                <li><a href="#certifications" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Certifications</a></li>
-                <li><a href="#education" class="nav-link block py-2 px-4 rounded-lg transition-colors duration-200">Education</a></li>
-            </ul>
-        </div>
-        <!-- Removed Connect Me section from here -->
+    <!-- Vertical Navigation (Right side) -->
+    <nav class="vertical-nav hidden lg:flex">
+        <a href="#hero" class="nav-dot active" data-tooltip="Intro"></a>
+        <a href="#about" class="nav-dot" data-tooltip="About"></a>
+        <a href="#projects" class="nav-dot" data-tooltip="Projects"></a>
+        <a href="#skills" class="nav-dot" data-tooltip="Skills"></a>
+        <a href="#certifications" class="nav-dot" data-tooltip="Certifications"></a>
+        <a href="#contact" class="nav-dot" data-tooltip="Contact"></a>
     </nav>
     
-    <!-- Mobile Header -->
-    <header class="lg:hidden fixed top-0 left-0 right-0 bg-[#1B4965] text-white p-4 z-50 shadow-lg">
-         <h1 class="text-xl font-bold text-center">Utkarsh Tripathi's Portfolio</h1>
-    </header>
+    <!-- Hero Section -->
+    <section id="hero" class="flex flex-col items-center justify-center p-8 text-center bg-white">
+        <h1 class="font-extrabold text-5xl md:text-8xl lg:text-9xl leading-none tracking-tight">
+            HI, I'M <span class="text-transparent bg-clip-text" style="background-image: linear-gradient(to right, #FF6B6B, #FFBB99);">UTKARSH.</span>
+        </h1>
+        <p class="text-2xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-gray-500">
+            A CREATIVE PROBLEM-SOLVER
+        </p>
+    </section>
 
-    <!-- Main Content -->
-    <main class="lg:ml-64 w-full p-6 md:p-10 lg:p-12 mt-16 lg:mt-0">
+    <!-- About Section - SIMPLIFIED TEXT FLOW -->
+    <section id="about" class="p-8 bg-gray-50">
+        <div class="container flex flex-col items-center justify-between gap-8 max-w-4xl">
+            <h2 class="heading-section font-extrabold text-center mb-6 text-gray-800">ABOUT</h2>
 
-        <!-- Banner Section -->
-        <section class="relative">
-            <!-- Banner Image Container -->
-            <div class="w-full h-64 md:h-80 overflow-hidden rounded-2xl shadow-lg">
-                <img src="https://sectraprodstorage01.blob.core.windows.net/medical-uploads/sites/3/2022/05/hero-web-cloud-article.jpg" 
-                     alt="Professional Portfolio Banner Image" 
-                     class="w-full h-full object-cover">
+            <div class="text-center space-y-6 text-lg text-gray-700">
+                
+                <!-- Paragraph 1: Introduction, Expertise, and Projects -->
+                <p class="leading-relaxed text-gray-800">
+                    I am Utkarsh Tripathi, a detail-oriented and tech-driven individual pursuing a Bachelor of Computer Applications (BCA) from IITM Janakpuri, Delhi (GGSIPU). My core expertise lies in Python, C++, JavaScript, and data science tools such as Pandas, NumPy, and Scikit-learn. I have actively built several machine learning and web-based projects, including the California House Price Prediction, Heart Disease Prediction Models, and a Weather App integrating real-time APIs.
+                </p>
+
+                <!-- Paragraph 2: Skills, Certifications, and Goal -->
+                <p class="leading-relaxed border-t pt-6 mb-8" style="border-color: #E5E5E5;">
+                    I combine strong communication and customer service experience with proven problem-solving, making me adaptable in both technical and collaborative environments. My commitment to continuous learning is demonstrated by formal certifications in Data Science using Python, Generative AI, and Large Language Models. I aim to bridge technology and practical applications to create efficient, impactful solutions.
+                </p>
+                
+                <!-- Download Resume Button updated here with direct download URL -->
+                <a href="https://drive.google.com/uc?export=download&id=1Rz1Kt3TRm-krBPIPzeSE1_Li4p2xfE6t" download="Utkarsh_Tripathi_Resume.pdf" class="inline-flex items-center space-x-2 px-8 py-3 rounded-full text-lg font-bold text-white transition-colors duration-300" style="background-color: var(--accent-color); border: 2px solid var(--accent-color); hover:background-color: #E05A5A; hover:border-color: #E05A5A;">
+                    <i class="fas fa-download"></i>
+                    <span>Download Resume</span>
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Professional Summary Section -->
-        <section id="summary" class="mb-12 min-h-screen flex items-center">
-            <div class="w-full">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Professional Summary ✨</h2>
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <p class="text-lg md:text-xl leading-relaxed mb-4 text-[#CAE9FF]">
-                        A highly motivated and adaptable BCA student with a strong foundation in computer science and a 
-                        growing expertise in data science and machine learning. Through academic projects and dedicated 
-                        training, I have developed a comprehensive understanding of the data lifecycle, from data manipulation
-                        to model deployment. I am passionate about applying my technical knowledge and problem-solving skills
-                        to create impactful solutions.
-                    </p>
-                    <ul class="list-disc list-inside space-y-2 text-[#CAE9FF]">
-                        <li>Foundational understanding of programming languages: Python, C++, and JavaScript.</li>
-                        <li>Practical experience with data analysis and machine learning libraries like Pandas, NumPy, and Scikit-learn.</li>
-                        <li>Skilled in developing and deploying machine learning models for classification and regression tasks.</li>
-                        <li>Strong ability to communicate complex data findings through clear and compelling visualizations.</li>
-                        <li>Eager to contribute to a collaborative, fast-paced team environment and apply my skills to real-world challenges.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Core Competencies Section -->
-        <section id="skills" class="mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Core Competencies 🛠️</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-4 text-[#CAE9FF]">Technical Skills</h3>
-                    <ul class="space-y-3">
-                        <li class="p-3 list-item rounded-lg"><strong>Hardware & Networking:</strong> Practical knowledge of hardware components and network troubleshooting.</li>
-                        <li class="p-3 list-item rounded-lg"><strong>Troubleshooting:</strong> Ability to diagnose and resolve technical issues related to software and hardware.</li>
-                        <li class="p-3 list-item rounded-lg"><strong>Remote Tools:</strong> Knowledge of using remote access tools for support.</li>
-                        <li class="p-3 list-item rounded-lg"><strong>Software Adaptation:</strong> Quick to learn and adapt to new software tools.</li>
-                        <li class="p-3 list-item rounded-lg"><strong>Programming:</strong> Foundational understanding of Python, C++, C, JavaScript.</li>
-                        <li class="p-3 list-item rounded-lg"><strong>Project Management:</strong> Practical knowledge of Jira for project and task management.</li>
-                    </ul>
-                </div>
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-4 text-[#CAE9FF]">Soft Skills</h3>
-                     <ul class="space-y-3">
-                        <li class="p-3 list-item rounded-lg"><strong>Communication:</strong> Excellent verbal and written skills for client interactions.</li>
-                        <li class="p-3 list-item rounded-lg"><strong>Problem-Solving:</strong> Strong ability to analyze problems and find effective solutions.</li>
-                        <li class="p-3 list-item rounded-lg"><strong>Teamwork:</strong> Proven team player, willing to work with cross-functional teams.</li>
-                        <li class="p-3 list-item rounded-lg"><strong>Multitasking & Organization:</strong> Skilled in managing multiple tasks and responsibilities.</li>
-                        <li class="p-3 list-item rounded-lg"><strong>Critical Thinking & Decision Making:</strong> Ability to make sound decisions under pressure.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Experience 💼</h2>
-            <div class="space-y-8">
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-xl font-bold">Event Coordinator - "Ad-mad Show"</h3>
-                    <p class="text-md text-[#CAE9FF] mb-2">College Feasta 2k25 | [Date of Event - Day, Month, 2025]</p>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>Managed all logistical and operational aspects of a college event, demonstrating organizational and multitasking skills.</li>
-                        <li>Communicated effectively with participants and internal teams to ensure a smooth and successful event.</li>
-                    </ul>
-                </div>
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-xl font-bold">Member - IT Club</h3>
-                    <p class="text-md text-[#CAE9FF] mb-2">IINTM College, Delhi | [Start Date] - Present</p>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>Actively participates in club activities, contributing to discussions and technical events.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Projects 🚀</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Weather App Project -->
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-xl font-bold">Weather App</h3>
-                    <p class="text-md text-[#CAE9FF] my-2">A web application that provides real-time weather updates for any location, showcasing skills in web development and API integration.</p>
-                    <div class="flex flex-wrap gap-4 mt-4">
-                        <a href="https://utkarshtripathi-teach.github.io/Weather_App_by_Utkarsh_Tripathi/" target="_blank" class="inline-block bg-[#5FA8D3] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#62B6CB] transition-colors duration-300">
-                            Live Deployment
-                        </a>
-                        <a href="https://github.com/UtkarshTripathi-teach/Weather_App_by_Utkarsh_Tripathi" target="_blank" class="inline-block bg-[#62B6CB] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#5FA8D3] transition-colors duration-300">
-                            View on GitHub
-                        </a>
+    <!-- Projects Section -->
+    <section id="projects" class="p-8 bg-white">
+        <div class="container flex flex-col gap-12">
+            <h2 class="heading-section font-extrabold text-center mb-8">PROJECTS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project Card 1: Weather App (FIXED) -->
+                <div class="card p-6 rounded-xl border-gray-200 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-900">Weather App</h3>
+                    <p class="text-gray-600 text-sm mb-4">A web application that provides real-time weather updates for any location, showcasing skills in web development and API integration.</p>
+                    <div class="flex flex-wrap gap-4 mt-auto">
+                        <a href="https://utkarshtripathi-teach.github.io/Weather_App_by_Utkarsh_Tripathi/" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-white transition-colors" style="background-color: var(--accent-color); hover:background-color: #E05A5A;">Live Deployment</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/Weather_App_by_Utkarsh_Tripathi" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-800 bg-gray-200 hover:bg-gray-300 transition-colors">View on GitHub</a>
                     </div>
                 </div>
-                <!-- California House Price Prediction Project -->
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-xl font-bold">California House Price Prediction</h3>
-                    <p class="text-md text-[#CAE9FF] my-2">A machine learning model developed to predict house prices in California, demonstrating expertise in data analysis, feature engineering, and regression algorithms.</p>
-                    <div class="flex flex-wrap gap-4 mt-4">
-                        <a href="https://californiahousepricepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="inline-block bg-[#5FA8D3] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#62B6CB] transition-colors duration-300">
-                            Live Deployment
-                        </a>
-                        <a href="https://github.com/UtkarshTripathi-teach/California_House_Price_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="inline-block bg-[#62B6CB] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#5FA8D3] transition-colors duration-300">
-                            View on GitHub
-                        </a>
+                
+                <!-- Project Card 2: California House Price Prediction (FIXED) -->
+                <div class="card p-6 rounded-xl border-gray-200 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-900">California House Price Prediction</h3>
+                    <p class="text-gray-600 text-sm mb-4">A machine learning model developed to predict house prices in California, demonstrating expertise in data analysis, feature engineering, and regression algorithms.</p>
+                    <div class="flex flex-wrap gap-4 mt-auto">
+                        <a href="https://californiahousepricepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-white transition-colors" style="background-color: var(--accent-color); hover:background-color: #E05A5A;">Live Deployment</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/California_House_Price_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-800 bg-gray-200 hover:bg-gray-300 transition-colors">View on GitHub</a>
                     </div>
                 </div>
-                <!-- Heart Disease Prediction ML Model Project -->
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-xl font-bold">Heart Disease Prediction ML Model</h3>
-                    <p class="text-md text-[#CAE9FF] my-2">Developed a machine learning model using Python and relevant libraries, highlighting foundational skills in Python programming and data analysis.</p>
-                    <div class="flex flex-wrap gap-4 mt-4">
-                        <a href="https://github.com/UtkarshTripathi-teach/Heart_Disease_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="inline-block bg-[#62B6CB] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#5FA8D3] transition-colors duration-300">
-                            View on GitHub
-                        </a>
-                        <a href="https://heartdiseasepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="inline-block bg-[#5FA8D3] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#62B6CB] transition-colors duration-300">
-                            Live Deployment
-                        </a>
+                
+                <!-- Project Card 3: Heart Disease Prediction (FIXED) -->
+                <div class="card p-6 rounded-xl border-gray-200 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-900">Heart Disease Prediction ML Model</h3>
+                    <p class="text-gray-600 text-sm mb-4">Developed a machine learning model using Python and relevant libraries, highlighting foundational skills in Python programming and data analysis.</p>
+                    <div class="flex flex-wrap gap-4 mt-auto">
+                        <a href="https://heartdiseasepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-white transition-colors" style="background-color: var(--accent-color); hover:background-color: #E05A5A;">Live Deployment</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/Heart_Disease_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-800 bg-gray-200 hover:bg-gray-300 transition-colors">View on GitHub</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Certifications Section -->
-        <section id="certifications" class="mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Certifications 📜</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Data Science using Python Training<span class="block text-xs text-[#1B4965]">IITM & GRAStech | Aug 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Deloitte Australia - Technology Job Simulation<span class="block text-xs text-[#1B4965]">Forage | Jul 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">How to create a Jira SCRUM project<span class="block text-xs text-[#1B4965]">Coursera | Jul 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Intro to Generative AI Learning Path<span class="block text-xs text-[#1B4965]">Google Cloud | Jul 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Introduction to Generative AI<span class="block text-xs text-[#1B4965]">ULSA | Jul 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Introduction to Large Language Models<span class="block text-xs text-[#1B4965]">ULSA | Jul 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">SketchUp: 3D modeling<span class="block text-xs text-[#1B4965]">Coursera | Jul 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">NLP and Text Mining<span class="block text-xs text-[#1B4965]">Simplilearn | Jun 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Innovating with Google Cloud AI<span class="block text-xs text-[#1B4965]">Simplilearn | Apr 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Certificate in AI and ML<span class="block text-xs text-[#1B4965]">Upskill | Apr 2025</span></div>
-                <div class="p-4 bg-[#62B6CB] text-[#1B4965] rounded-lg text-center text-sm section-card transition-shadow hover:shadow-xl">Certificate in Advanced Excel<span class="block text-xs text-[#1B4965]">IINTM College | Jan 2025</span></div>
+    <!-- Skills Section -->
+    <section id="skills" class="p-8 bg-gray-50">
+        <div class="container flex flex-col items-center">
+            <h2 class="heading-section font-extrabold text-center mb-12">SKILLS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+                <!-- Technical Skills -->
+                <div class="card p-6 rounded-xl border-gray-200 md:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900" style="color: var(--accent-color);">Programming & Core</h3>
+                    <ul class="space-y-3 text-gray-700 text-base font-medium">
+                        <li>C++, Python, JavaScript, C, Java</li>
+                        <li>Data Structures, OOP, SQL</li>
+                        <li>HTML, CSS, Front-End Development</li>
+                    </ul>
+                </div>
+                <!-- Data Science & ML -->
+                <div class="card p-6 rounded-xl border-gray-200 md:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900" style="color: var(--accent-color);">Data & Emerging Tech</h3>
+                    <ul class="space-y-3 text-gray-700 text-base font-medium">
+                        <li>Artificial Intelligence (AI) & Machine Learning (ML)</li>
+                        <li>Natural Language Processing (NLP), Text Mining</li>
+                        <li>Python Libraries (pandas, scikit-learn), Advanced Excel</li>
+                    </ul>
+                </div>
+                 <!-- Soft Skills & Tools -->
+                 <div class="card p-6 rounded-xl border-gray-200 md:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900" style="color: var(--accent-color);">Soft Skills & Tools</h3>
+                    <ul class="space-y-3 text-gray-700 text-base font-medium">
+                        <li>Critical Thinking, Research Skills, Problem-solving</li>
+                        <li>Jira for Project Management</li>
+                        <li>Hardware & Networking Troubleshooting</li>
+                        <li>Communication, Teamwork, Event Coordination</li>
+                    </ul>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Education Section -->
-        <section id="education" class="mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#5FA8D3] pb-2">Education 🎓</h2>
-             <div class="space-y-8">
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-xl font-bold">Bachelor of Computer Applications (BCA)</h3>
-                    <p class="text-md text-[#CAE9FF] mb-2">IINTM, Janakpuri, Delhi (GGSIPU) | Expected 2026</p>
-                    <p class="mt-2 text-[#CAE9FF]"><strong>Relevant Coursework:</strong> Data Structures, OOP, C++, HTML, CSS, JavaScript, C, DBMS, SQL, Computer Networks, Python, AI, Java.</p>
+    <!-- Certifications Section -->
+    <section id="certifications" class="p-8 bg-white">
+        <div class="container flex flex-col items-center">
+            <h2 class="heading-section font-extrabold text-center mb-12">CERTIFICATIONS</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                <!-- Each card is clickable, displaying the image in a modal -->
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://placehold.co/800x600/F9FAFB/111827?text=Data+Science+using+Python+Cert">
+                    <p class="font-semibold text-gray-800">Data Science using Python Training</p>
+                    <span class="block text-xs text-gray-500 mt-1">IITM & GRAStech | Aug 2025</span>
                 </div>
-                <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-xl font-bold">Class 12th (PCM)</h3>
-                    <p class="text-md text-[#CAE9FF] mb-2">Little Flower School, Harriya, Basti, UP | 2022</p>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_zLcmRywKRG27MHtXv_1751370978080_completion_certificate.jpeg">
+                    <p class="font-semibold text-gray-800">Deloitte Australia - Technology Job Simulation</p>
+                    <span class="block text-xs text-gray-500 mt-1">Forage | Jul 2025</span>
                 </div>
-                 <div class="section-card p-6 rounded-2xl shadow-lg">
-                    <h3 class="text-xl font-bold">Class 10th</h3>
-                    <p class="text-md text-[#CAE9FF] mb-2">Little Flower School, Harriya, Basti, UP | 2020</p>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~SFP5TTGLDG9R/CERTIFICATE_LANDING_PAGE~SFP5TTGLDG9R.jpeg">
+                    <p class="font-semibold text-gray-800">How to create a Jira SCRUM project</p>
+                    <span class="block text-xs text-gray-500 mt-1">Coursera Project Network | Jul 2025</span>
+                </div>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU.jpeg">
+                    <p class="font-semibold text-gray-800">Introduction to Generative AI Learning Path</p>
+                    <span class="block text-xs text-gray-500 mt-1">Google Cloud | Jul 2025</span>
+                </div>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU.jpeg">
+                    <p class="font-semibold text-gray-800">Introduction to Generative AI</p>
+                    <span class="block text-xs text-gray-500 mt-1">ULSA | Jul 2025</span>
+                </div>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~VCQQWX7V24G4/CERTIFICATE_LANDING_PAGE~VCQQWX7V24G4.jpeg">
+                    <p class="font-semibold text-gray-800">Introduction to Large Language Models</p>
+                    <span class="block text-xs text-gray-500 mt-1">ULSA | Jul 2025</span>
+                </div>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~V3JBB20T9NCE/CERTIFICATE_LANDING_PAGE~V3JBB20T9NCE.jpeg">
+                    <p class="font-semibold text-gray-800">SketchUp: 3D Modeling</p>
+                    <span class="block text-xs text-gray-500 mt-1">Coursera | Jul 2025</span>
+                </div>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://certificates.simplicdn.net/share/8414306_86308001748751728299.png">
+                    <p class="font-semibold text-gray-800">NLP and Text Mining</p>
+                    <span class="block text-xs text-gray-500 mt-1">Simplilearn | Jun 2025</span>
+                </div>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://certificates.simplicdn.net/share/8279545_86308001746014872591.png">
+                    <p class="font-semibold text-gray-800">Innovating with Google Cloud AI</p>
+                    <span class="block text-xs text-gray-500 mt-1">Simplilearn | Apr 2025</span>
+                </div>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://placehold.co/800x600/F9FAFB/111827?text=AI+and+ML+Cert">
+                    <p class="font-semibold text-gray-800">Certificate in AI and ML</p>
+                    <span class="block text-xs text-gray-500 mt-1">Upskill | Apr 2025</span>
+                </div>
+                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://placehold.co/800x600/F9FAFB/111827?text=Advanced+Excel+Cert">
+                    <p class="font-semibold text-gray-800">Certificate in Advanced Excel</p>
+                    <span class="block text-xs text-gray-500 mt-1">IINTM College | Jan 2025</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Connect Me Section -->
-        <section id="connect" class="my-12">
-            <div class="text-center text-[#1B4965] text-sm">
-                <h3 class="text-3xl font-bold text-[#1B4965] mb-4">Connect Me</h3>
+    <!-- Connect Section -->
+    <section id="contact" class="p-8 bg-gray-50">
+        <div class="container flex flex-col items-center text-center">
+            <h2 class="heading-section font-extrabold mb-8">CONTACT</h2>
+            <div class="flex flex-wrap justify-center gap-4 md:space-y-0 md:space-x-4 mb-8">
                 <!-- Social Media Buttons -->
-                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-6 justify-center">
-                    <!-- LinkedIn Button -->
-                    <a href="https://www.linkedin.com/in/utkarsh-tripathi-94080335b/" target="_blank" class="flex items-center space-x-2 bg-[#62B6CB] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#5FA8D3] transition-colors duration-300 justify-center">
-                        <i class="fab fa-linkedin"></i>
-                        <span class="font-semibold">LinkedIn</span>
-                    </a>
-                    <!-- X (Twitter) Button -->
-                    <a href="https://x.com/Utkarsh_atX" target="_blank" class="flex items-center space-x-2 bg-[#62B6CB] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#5FA8D3] transition-colors duration-300 justify-center">
-                        <i class="fab fa-x-twitter"></i>
-                        <span class="font-semibold">X</span>
-                    </a>
-                    <!-- GitHub Button -->
-                    <a href="https://github.com/UtkarshTripathi-teach" target="_blank" class="flex items-center space-x-2 bg-[#62B6CB] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#5FA8D3] transition-colors duration-300 justify-center">
-                        <i class="fab fa-github"></i>
-                        <span class="font-semibold">GitHub</span>
-                    </a>
-                    <!-- Email Me Button -->
-                     <a href="mailto:tripathiutkarsh.tech@outlook.com" class="flex items-center space-x-2 bg-[#62B6CB] text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 shadow-lg hover:bg-[#5FA8D3] justify-center">
-                        📧
-                        <span>Email Me</span>
-                    </a>
-                </div>
-                <div class="text-md font-semibold text-[#1B4965]">
-                    <p>tripathiutkarsh.tech@outlook.com</p>
-                    <p>Delhi, India</p>
-                </div>
+                <a href="https://www.linkedin.com/in/utkarsh-tripathi-94080335b/" target="_blank" class="flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-colors duration-300" style="background-color: var(--text-color); border: 2px solid var(--text-color); hover:background-color: var(--accent-color); hover:border-color: var(--accent-color);">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://x.com/Utkarsh_atX?t=X9H8SD_Hhqrd0gYYYx6Aow&s=09" target="_blank" class="flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-colors duration-300" style="background-color: var(--text-color); border: 2px solid var(--text-color); hover:background-color: var(--accent-color); hover:border-color: var(--accent-color);">
+                    <i class="fab fa-x-twitter"></i>
+                    <span>X</span>
+                </a>
+                <a href="https://github.com/dashboard" target="_blank" class="flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-colors duration-300" style="background-color: var(--text-color); border: 2px solid var(--text-color); hover:background-color: var(--accent-color); hover:border-color: var(--accent-color);">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:tripathiutkarsh.tech@outlook.com" class="flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-colors duration-300" style="background-color: var(--accent-color); border: 2px solid var(--accent-color); hover:background-color: #E05A5A; hover:border-color: #E05A5A;">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email Me</span>
+                </a>
+                
+                <!-- This button is now removed from the contact section since it's in the About section -->
             </div>
-        </section>
+            <div class="text-xl font-semibold text-gray-700">
+                <p>tripathiutkarsh.tech@outlook.com</p>
+                <p>Designed and developed by Utkarsh Tripathi</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Footer Section -->
-        <footer class="w-full text-center py-8">
-            <p class="text-[#1B4965] text-sm">Designed and developed by Utkarsh Tripathi</p>
-        </footer>
-    </main>
+    <!-- Certificate Modal -->
+    <div id="certificate-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center modal-overlay">
+        <div class="relative rounded-lg shadow-xl p-4 max-w-5xl mx-auto w-11/12 md:w-3/4 lg:w-1/2 modal-content">
+            <button id="modal-close" class="absolute top-2 right-4 text-3xl text-gray-800 hover:text-black transition-colors duration-200 focus:outline-none">&times;</button>
+            <img id="modal-image" src="" alt="Certificate" class="rounded-lg w-full h-auto">
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sidebar = document.getElementById('sidebar');
-
-            const options = {
+            const navDots = document.querySelectorAll('.nav-dot');
+            const observerOptions = {
                 rootMargin: '-50% 0px -50% 0px',
                 threshold: 0
             };
@@ -300,24 +338,55 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href').substring(1) === entry.target.id) {
-                                link.classList.add('active');
+                        navDots.forEach(dot => {
+                            dot.classList.remove('active');
+                            if (dot.getAttribute('href').substring(1) === entry.target.id) {
+                                dot.classList.add('active');
                             }
                         });
                     }
                 });
-            }, options);
+            }, observerOptions);
 
             sections.forEach(section => {
                 observer.observe(section);
             });
             
-            // Set initial active link for the first section
-            if (navLinks.length > 0) {
-                 navLinks[0].classList.add('active');
+            // New feature: Clickable certifications
+            const certificationCards = document.querySelectorAll('.certification-card');
+            const modal = document.getElementById('certificate-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalCloseButton = document.getElementById('modal-close');
+
+            // Function to show the modal
+            function showModal(imageUrl) {
+                modalImage.src = imageUrl;
+                modal.classList.remove('hidden');
             }
+
+            // Function to hide the modal
+            function hideModal() {
+                modal.classList.add('hidden');
+                modalImage.src = ''; // Clear image to prevent flicker on next open
+            }
+
+            // Add click listeners to each certification card
+            certificationCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const imageUrl = card.getAttribute('data-image-url');
+                    showModal(imageUrl);
+                });
+            });
+
+            // Add click listener to the close button
+            modalCloseButton.addEventListener('click', hideModal);
+
+            // Hide modal if user clicks outside the image
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    hideModal();
+                }
+            });
         });
     </script>
 </body>
