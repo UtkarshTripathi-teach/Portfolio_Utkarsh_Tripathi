@@ -3,192 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utkarsh Tripathi Profile</title>
+    <title>Utkarsh Tripathi | UI Engineer & Data Analyst</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome for social media icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Design Inspiration: Minimalist, high-contrast monochrome design with a single sharp accent. Full-screen scroll-snap layout maintained. -->
+    
     <style>
         :root {
-            /* Using CSS variables for a sharp, high-contrast Light Theme + Coral Accent */
-            --bg-color: #FFFFFF; /* Pure White - Used for default body background */
-            --text-color: #111827; /* Very Dark Gray/Black */
-            --accent-color: #FF6B6B; /* Vibrant Coral/Red Accent */
-            --secondary-text-color: #6B7280; /* Medium Gray */
-            --card-bg-color: #F9FAFB; /* Slightly off-white card background */
-            --dark-card-text: #111827; /* Dark text for light cards */
+            --bg-dark: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-gradient: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            --text-main: #ededed;
+            --text-muted: #a1a1aa;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            /* Key structural feature: Full-screen sections snap into place */
-            scroll-snap-type: y mandatory;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             overflow-x: hidden;
         }
 
-        section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            scroll-snap-align: start;
-            padding: 2rem;
-            /* Ensure section backgrounds override body background */
-            transition: background-color 0.3s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .heading-section {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            letter-spacing: -0.05em;
-            font-weight: 900; /* Extra bold for impact */
-            color: var(--text-color);
-        }
-
-        @media (min-width: 768px) {
-            .heading-section {
-                font-size: 7rem;
-            }
-        }
-        
-        .card {
-            background-color: var(--card-bg-color);
-            color: var(--dark-card-text);
-            border: 1px solid #E5E5E5;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
-            border-color: var(--accent-color);
-        }
-
-        /* Modal-specific styles - adapted for the light theme */
-        .modal-overlay {
-            background-color: rgba(255, 255, 255, 0.98);
-        }
-        .modal-content {
-            background-color: var(--card-bg-color);
-        }
-
-        /* Styles for the right-side vertical navigation */
-        .vertical-nav {
+        /* Artistic Noise Overlay */
+        body::before {
+            content: "";
             position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 40;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            align-items: center;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.05;
+            z-index: 50;
+            pointer-events: none;
         }
-        .nav-dot {
-            width: 0.8rem;
-            height: 0.8rem;
-            background-color: var(--secondary-text-color);
-            border: 2px solid var(--secondary-text-color);
-            background-color: transparent;
+
+        /* Headings Font */
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+
+        /* Floating Gradient Orbs */
+        .orb {
+            position: fixed;
             border-radius: 50%;
-            transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 20s infinite alternate;
         }
-        .nav-dot.active {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            transform: scale(1.2);
+        .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #4f46e5; }
+        .orb-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: #be185d; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
+
+        /* Modern Glass Card */
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Text Gradient */
+        .text-gradient {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Floating Dock Navigation */
+        .dock {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            padding: 0.75rem;
+            border-radius: 9999px;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 100;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
+
+        .dock-item {
+            padding: 0.75rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .dock-item:hover, .dock-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Profile Image Glow */
+        .profile-glow {
+            position: relative;
+        }
+        .profile-glow::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            z-index: -1;
+            opacity: 0.7;
+            filter: blur(10px);
+        }
+
+        /* Button Shine Effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            color: #000;
+            font-weight: 700;
+            border-radius: 9999px;
+            transition: 0.3s;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            transition: 0.5s;
+        }
+        .btn-shine:hover::before { left: 100%; }
+        .btn-shine:hover { transform: scale(1.05); }
+
     </style>
 </head>
-<body>
+<body class="pb-32"> <!-- Padding bottom for dock -->
 
-    <!-- Vertical Navigation (Right side) -->
-    <nav class="vertical-nav hidden lg:flex">
-        <a href="#hero" class="nav-dot active" data-tooltip="Intro"></a>
-        <a href="#about" class="nav-dot" data-tooltip="About"></a>
-        <a href="#projects" class="nav-dot" data-tooltip="Projects"></a>
-        <a href="#skills" class="nav-dot" data-tooltip="Skills"></a>
-        <a href="#certifications" class="nav-dot" data-tooltip="Certifications"></a>
-        <a href="#contact" class="nav-dot" data-tooltip="Contact"></a>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Floating Dock Navigation -->
+    <nav class="dock">
+        <a href="#hero" class="dock-item active"><i class="fas fa-home md:hidden"></i><span class="hidden md:inline">Home</span></a>
+        <a href="#about" class="dock-item"><i class="fas fa-user md:hidden"></i><span class="hidden md:inline">About</span></a>
+        <a href="#projects" class="dock-item"><i class="fas fa-layer-group md:hidden"></i><span class="hidden md:inline">Projects</span></a>
+        <a href="#skills" class="dock-item"><i class="fas fa-code md:hidden"></i><span class="hidden md:inline">Stack</span></a>
+        <a href="#contact" class="dock-item"><i class="fas fa-paper-plane md:hidden"></i><span class="hidden md:inline">Contact</span></a>
     </nav>
     
     <!-- Hero Section -->
-    <section id="hero" class="flex flex-col items-center justify-center p-8 text-center bg-white">
-        <h1 class="font-extrabold text-5xl md:text-8xl lg:text-9xl leading-none tracking-tight">
-            HI, I'M <span class="text-transparent bg-clip-text" style="background-image: linear-gradient(to right, #FF6B6B, #FFBB99);">UTKARSH.</span>
-        </h1>
-        <p class="text-2xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-gray-500">
-            A CREATIVE PROBLEM-SOLVER
-        </p>
+    <section id="hero" class="min-h-screen flex items-center justify-center relative">
+        <div class="text-center px-6 max-w-4xl mx-auto z-10">
+            <div class="reveal">
+                <div class="mx-auto w-32 h-32 md:w-40 md:h-40 rounded-full profile-glow mb-8 overflow-hidden">
+                     <img src="utkarshtripathiprofilepic.jpeg" alt="Utkarsh Tripathi" class="w-full h-full object-cover">
+                </div>
+                <div class="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium tracking-widest text-indigo-300 mb-6 uppercase">
+                    Available for Work
+                </div>
+                <h1 class="text-6xl md:text-8xl font-bold tracking-tight leading-none mb-6">
+                    Designing <span class="text-gradient">Logic.</span> <br> Building <span class="text-gradient">Future.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    I am <strong class="text-white">Utkarsh Tripathi</strong>. A fusion of creative <span class="text-white">Frontend Engineering</span> and analytical <span class="text-white">Data Science</span>. I build pixel-perfect interfaces backed by powerful data insights.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#projects" class="btn-shine px-8 py-4">View My Work</a>
+                    <a href="https://drive.google.com/uc?export=download&id=1Rz1Kt3TRm-krBPIPzeSE1_Li4p2xfE6t" class="px-8 py-4 rounded-full border border-white/20 hover:bg-white/10 transition-all font-semibold flex items-center gap-2">
+                        <i class="fas fa-download"></i> Resume
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- About Section - SIMPLIFIED TEXT FLOW -->
-    <section id="about" class="p-8 bg-gray-70">
-        <div class="container flex flex-col items-center justify-between gap-8 max-w-4xl">
-            <h2 class="heading-section font-extrabold text-center mb-6 text-gray-800">ABOUT</h2>
-
-            <div class="text-center space-y-6 text-lg text-gray-700">
+    <!-- Bento Grid About Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-12 text-center reveal">The Narrative</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Main Bio -->
+                <div class="glass-card p-8 md:col-span-2 reveal">
+                    <h3 class="text-2xl font-bold mb-4 text-white">Who am I?</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        I am a detail-oriented tech enthusiast pursuing a BCA from IITM Janakpuri, Delhi. I don't just code; I solve problems. My core expertise lies in <strong class="text-indigo-400">Python, C++, and JavaScript</strong>.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed">
+                        I combine strong communication skills with technical rigor. Whether it's predicting housing prices with ML or crafting a responsive Weather App, I aim to bridge the gap between complex backend logic and beautiful user experiences.
+                    </p>
+                </div>
                 
-                <!-- Paragraph 1: Introduction, Expertise, and Projects -->
-                <p class="leading-relaxed text-gray-800">
-                    I am Utkarsh Tripathi, a detail-oriented and tech-driven individual pursuing a Bachelor of Computer Applications (BCA) from IITM Janakpuri, Delhi (GGSIPU). My core expertise lies in Python, C++, JavaScript, and data science tools such as Pandas, NumPy, and Scikit-learn. I have actively built several machine learning and web-based projects, including the California House Price Prediction, Heart Disease Prediction Models, and a Weather App integrating real-time APIs.
-                </p>
+                <!-- Stat Card 1 -->
+                <div class="glass-card p-8 flex flex-col justify-center items-center text-center reveal" style="transition-delay: 0.1s">
+                    <div class="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-2xl mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4 class="text-3xl font-bold mb-1">Frontend</h4>
+                    <p class="text-sm text-gray-500">React, Tailwind, HTML5</p>
+                </div>
 
-                <!-- Paragraph 2: Skills, Certifications, and Goal -->
-                <p class="leading-relaxed border-t pt-6 mb-8" style="border-color: #E5E5E5;">
-                    I combine strong communication and customer service experience with proven problem-solving, making me adaptable in both technical and collaborative environments. My commitment to continuous learning is demonstrated by formal certifications in Data Science using Python, Generative AI, and Large Language Models. I aim to bridge technology and practical applications to create efficient, impactful solutions.
-                </p>
-                
-                <!-- Download Resume Button updated here with direct download URL -->
-                <a href="https://drive.google.com/uc?export=download&id=1Rz1Kt3TRm-krBPIPzeSE1_Li4p2xfE6t" download="Utkarsh_Tripathi_Resume.pdf" class="inline-flex items-center space-x-2 px-8 py-3 rounded-full text-lg font-bold text-white transition-colors duration-300" style="background-color: var(--accent-color); border: 2px solid var(--accent-color); hover:background-color: #E05A5A; hover:border-color: #E05A5A;">
-                    <i class="fas fa-download"></i>
-                    <span>Download Resume</span>
-                </a>
+                <!-- Stat Card 2 -->
+                <div class="glass-card p-8 flex flex-col justify-center items-center text-center reveal" style="transition-delay: 0.2s">
+                    <div class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl mb-4">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4 class="text-3xl font-bold mb-1">Data</h4>
+                    <p class="text-sm text-gray-500">Python, Pandas, ML</p>
+                </div>
+
+                <!-- Certifications Tease -->
+                <div class="glass-card p-8 md:col-span-2 flex items-center justify-between reveal" style="transition-delay: 0.3s">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Certified Expert</h3>
+                        <p class="text-sm text-gray-400">Data Science, GenAI, LLMs, and Agile methodologies.</p>
+                    </div>
+                    <a href="#certifications" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="p-8 bg-white">
-        <div class="container flex flex-col gap-12">
-            <h2 class="heading-section font-extrabold text-center mb-8">PROJECTS</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project Card 1: Weather App (FIXED) -->
-                <div class="card p-6 rounded-xl border-gray-200 flex flex-col h-full">
-                    <h3 class="text-2xl font-bold mb-2 text-gray-900">Weather App</h3>
-                    <p class="text-gray-600 text-sm mb-4">A web application that provides real-time weather updates for any location, showcasing skills in web development and API integration.</p>
-                    <div class="flex flex-wrap gap-4 mt-auto">
-                        <a href="https://utkarshtripathi-teach.github.io/Weather_App_by_Utkarsh_Tripathi/" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-white transition-colors" style="background-color: var(--accent-color); hover:background-color: #E05A5A;">Live Deployment</a>
-                        <a href="https://github.com/UtkarshTripathi-teach/Weather_App_by_Utkarsh_Tripathi" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-800 bg-gray-200 hover:bg-gray-300 transition-colors">View on GitHub</a>
+    <section id="projects" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-12 text-center reveal">Selected Works</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: Elevate -->
+                <div class="glass-card p-6 flex flex-col h-full reveal group">
+                    <div class="aspect-video bg-gradient-to-br from-gray-800 to-black rounded-xl mb-6 overflow-hidden relative">
+                         <!-- Hover Overlay -->
+                        <div class="absolute inset-0 bg-indigo-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-bold tracking-widest border border-white px-4 py-2 rounded-full">VIEW</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                             <i class="fas fa-layer-group text-3xl text-gray-600 group-hover:text-white transition-colors"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Elevate</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow">A comprehensive minor project focusing on high-quality frontend development and intuitive user interface design patterns.</p>
+                    <div class="flex gap-4 pt-4 border-t border-white/5">
+                        <a href="#" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-indigo-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/Elevate_minor_project" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
                     </div>
                 </div>
-                
-                <!-- Project Card 2: California House Price Prediction (FIXED) -->
-                <div class="card p-6 rounded-xl border-gray-200 flex flex-col h-full">
-                    <h3 class="text-2xl font-bold mb-2 text-gray-900">California House Price Prediction</h3>
-                    <p class="text-gray-600 text-sm mb-4">A machine learning model developed to predict house prices in California, demonstrating expertise in data analysis, feature engineering, and regression algorithms.</p>
-                    <div class="flex flex-wrap gap-4 mt-auto">
-                        <a href="https://californiahousepricepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-white transition-colors" style="background-color: var(--accent-color); hover:background-color: #E05A5A;">Live Deployment</a>
-                        <a href="https://github.com/UtkarshTripathi-teach/California_House_Price_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-800 bg-gray-200 hover:bg-gray-300 transition-colors">View on GitHub</a>
+
+                <!-- Project 2: CarDekho EDA -->
+                <div class="glass-card p-6 flex flex-col h-full reveal group" style="transition-delay: 0.1s">
+                    <div class="aspect-video bg-gradient-to-br from-gray-800 to-black rounded-xl mb-6 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-emerald-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-bold tracking-widest border border-white px-4 py-2 rounded-full">VIEW</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                             <i class="fas fa-chart-bar text-3xl text-gray-600 group-hover:text-white transition-colors"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">CarDekho EDA</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow">In-depth Exploratory Data Analysis identifying market trends and consumer behavior through advanced visualization.</p>
+                    <div class="flex gap-4 pt-4 border-t border-white/5">
+                        <a href="#" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-emerald-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/CarDekho-EDA-Project-by-Utkarsh-Tripathi" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
                     </div>
                 </div>
-                
-                <!-- Project Card 3: Heart Disease Prediction (FIXED) -->
-                <div class="card p-6 rounded-xl border-gray-200 flex flex-col h-full">
-                    <h3 class="text-2xl font-bold mb-2 text-gray-900">Heart Disease Prediction ML Model</h3>
-                    <p class="text-gray-600 text-sm mb-4">Developed a machine learning model using Python and relevant libraries, highlighting foundational skills in Python programming and data analysis.</p>
-                    <div class="flex flex-wrap gap-4 mt-auto">
-                        <a href="https://heartdiseasepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-white transition-colors" style="background-color: var(--accent-color); hover:background-color: #E05A5A;">Live Deployment</a>
-                        <a href="https://github.com/UtkarshTripathi-teach/Heart_Disease_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-800 bg-gray-200 hover:bg-gray-300 transition-colors">View on GitHub</a>
+
+                <!-- Project 3: Weather App -->
+                <div class="glass-card p-6 flex flex-col h-full reveal group" style="transition-delay: 0.2s">
+                    <div class="aspect-video bg-gradient-to-br from-gray-800 to-black rounded-xl mb-6 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-bold tracking-widest border border-white px-4 py-2 rounded-full">VIEW</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                             <i class="fas fa-cloud-sun text-3xl text-gray-600 group-hover:text-white transition-colors"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Weather App</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow">Real-time weather application showcasing API integration, asynchronous JS, and dynamic DOM manipulation.</p>
+                    <div class="flex gap-4 pt-4 border-t border-white/5">
+                        <a href="https://utkarshtripathi-teach.github.io/Weather_App_by_Utkarsh_Tripathi/" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-blue-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/Weather_App_by_Utkarsh_Tripathi" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
+                    </div>
+                </div>
+                 
+                 <!-- Project 4: California Housing -->
+                <div class="glass-card p-6 flex flex-col h-full reveal group" style="transition-delay: 0.3s">
+                    <div class="aspect-video bg-gradient-to-br from-gray-800 to-black rounded-xl mb-6 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                             <span class="text-white font-bold tracking-widest border border-white px-4 py-2 rounded-full">VIEW</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                             <i class="fas fa-home text-3xl text-gray-600 group-hover:text-white transition-colors"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">California Housing ML</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow">Regression model predicting housing prices with high accuracy using feature engineering and Scikit-learn.</p>
+                    <div class="flex gap-4 pt-4 border-t border-white/5">
+                        <a href="https://californiahousepricepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-purple-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/California_House_Price_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project 5: Heart Disease -->
+                <div class="glass-card p-6 flex flex-col h-full reveal group" style="transition-delay: 0.4s">
+                    <div class="aspect-video bg-gradient-to-br from-gray-800 to-black rounded-xl mb-6 overflow-hidden relative">
+                         <div class="absolute inset-0 bg-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                             <span class="text-white font-bold tracking-widest border border-white px-4 py-2 rounded-full">VIEW</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                             <i class="fas fa-heartbeat text-3xl text-gray-600 group-hover:text-white transition-colors"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Heart Disease AI</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow">Classification model for early detection of heart disease using patient data metrics.</p>
+                    <div class="flex gap-4 pt-4 border-t border-white/5">
+                        <a href="https://heartdiseasepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-red-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/Heart_Disease_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -196,197 +350,181 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="p-8 bg-gray-70">
-        <div class="container flex flex-col items-center">
-            <h2 class="heading-section font-extrabold text-center mb-12">SKILLS</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-                <!-- Technical Skills -->
-                <div class="card p-6 rounded-xl border-gray-200 md:col-span-1">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900" style="color: var(--accent-color);">Programming & Core</h3>
-                    <ul class="space-y-3 text-gray-700 text-base font-medium">
-                        <li>C++, Python, JavaScript, C, Java</li>
-                        <li>Data Structures, OOP, SQL</li>
-                        <li>HTML, CSS, Front-End Development</li>
-                    </ul>
+    <section id="skills" class="py-20 px-6 bg-white/5">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-12 text-center reveal">Technical Arsenal</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+                <div class="glass-card p-6 text-center hover:bg-white/10 transition-colors">
+                    <i class="fab fa-python text-4xl mb-4 text-yellow-400"></i>
+                    <h4 class="font-bold">Python</h4>
+                    <p class="text-xs text-gray-500 mt-2">Data Science & ML</p>
                 </div>
-                <!-- Data Science & ML -->
-                <div class="card p-6 rounded-xl border-gray-200 md:col-span-1">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900" style="color: var(--accent-color);">Data & Emerging Tech</h3>
-                    <ul class="space-y-3 text-gray-700 text-base font-medium">
-                        <li>Artificial Intelligence (AI) & Machine Learning (ML)</li>
-                        <li>Natural Language Processing (NLP), Text Mining</li>
-                        <li>Python Libraries (pandas, scikit-learn), Advanced Excel</li>
-                    </ul>
+                <div class="glass-card p-6 text-center hover:bg-white/10 transition-colors">
+                    <i class="fab fa-js text-4xl mb-4 text-yellow-300"></i>
+                    <h4 class="font-bold">JavaScript</h4>
+                    <p class="text-xs text-gray-500 mt-2">Interactive UI</p>
                 </div>
-                 <!-- Soft Skills & Tools -->
-                 <div class="card p-6 rounded-xl border-gray-200 md:col-span-1">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900" style="color: var(--accent-color);">Soft Skills & Tools</h3>
-                    <ul class="space-y-3 text-gray-700 text-base font-medium">
-                        <li>Critical Thinking, Research Skills, Problem-solving</li>
-                        <li>Jira for Project Management</li>
-                        <li>Hardware & Networking Troubleshooting</li>
-                        <li>Communication, Teamwork, Event Coordination</li>
-                    </ul>
+                <div class="glass-card p-6 text-center hover:bg-white/10 transition-colors">
+                    <i class="fas fa-database text-4xl mb-4 text-blue-400"></i>
+                    <h4 class="font-bold">SQL</h4>
+                    <p class="text-xs text-gray-500 mt-2">Database Mgmt</p>
+                </div>
+                <div class="glass-card p-6 text-center hover:bg-white/10 transition-colors">
+                    <i class="fab fa-react text-4xl mb-4 text-cyan-400"></i>
+                    <h4 class="font-bold">React / Frontend</h4>
+                    <p class="text-xs text-gray-500 mt-2">Component Arch</p>
+                </div>
+                <div class="glass-card p-6 text-center hover:bg-white/10 transition-colors">
+                    <i class="fas fa-brain text-4xl mb-4 text-pink-400"></i>
+                    <h4 class="font-bold">Machine Learning</h4>
+                    <p class="text-xs text-gray-500 mt-2">Scikit-Learn</p>
+                </div>
+                <div class="glass-card p-6 text-center hover:bg-white/10 transition-colors">
+                    <i class="fab fa-jira text-4xl mb-4 text-blue-500"></i>
+                    <h4 class="font-bold">Jira</h4>
+                    <p class="text-xs text-gray-500 mt-2">Project Mgmt</p>
+                </div>
+                <div class="glass-card p-6 text-center hover:bg-white/10 transition-colors">
+                    <i class="fab fa-figma text-4xl mb-4 text-purple-400"></i>
+                    <h4 class="font-bold">Figma</h4>
+                    <p class="text-xs text-gray-500 mt-2">UI Design</p>
+                </div>
+                <div class="glass-card p-6 text-center hover:bg-white/10 transition-colors">
+                    <i class="fab fa-git-alt text-4xl mb-4 text-orange-500"></i>
+                    <h4 class="font-bold">Git</h4>
+                    <p class="text-xs text-gray-500 mt-2">Version Control</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="p-8 bg-white">
-        <div class="container flex flex-col items-center">
-            <h2 class="heading-section font-extrabold text-center mb-12">CERTIFICATIONS</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-                <!-- Each card is clickable, displaying the image in a modal -->
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://placehold.co/800x600/F9FAFB/111827?text=Data+Science+using+Python+Cert">
-                    <p class="font-semibold text-gray-800">Data Science using Python Training</p>
-                    <span class="block text-xs text-gray-500 mt-1">IITM & GRAStech | Aug 2025</span>
+    <section id="certifications" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-12 text-center reveal">Certifications</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+                <!-- Card 1 -->
+                <div class="glass-card p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors certification-card" data-image-url="https://placehold.co/800x600/0a0a0a/6366f1?text=Data+Science+Cert">
+                    <p class="font-bold text-sm mb-1">Data Science</p>
+                    <p class="text-[10px] text-gray-500 uppercase">IITM & GRAStech</p>
                 </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_zLcmRywKRG27MHtXv_1751370978080_completion_certificate.jpeg">
-                    <p class="font-semibold text-gray-800">Deloitte Australia - Technology Job Simulation</p>
-                    <span class="block text-xs text-gray-500 mt-1">Forage | Jul 2025</span>
+                <!-- Card 2 -->
+                <div class="glass-card p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors certification-card" data-image-url="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_zLcmRywKRG27MHtXv_1751370978080_completion_certificate.jpeg">
+                    <p class="font-bold text-sm mb-1">Deloitte Sim</p>
+                    <p class="text-[10px] text-gray-500 uppercase">Forage</p>
                 </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~SFP5TTGLDG9R/CERTIFICATE_LANDING_PAGE~SFP5TTGLDG9R.jpeg">
-                    <p class="font-semibold text-gray-800">How to create a Jira SCRUM project</p>
-                    <span class="block text-xs text-gray-500 mt-1">Coursera Project Network | Jul 2025</span>
+                <!-- Card 3 -->
+                <div class="glass-card p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors certification-card" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~SFP5TTGLDG9R/CERTIFICATE_LANDING_PAGE~SFP5TTGLDG9R.jpeg">
+                    <p class="font-bold text-sm mb-1">Jira SCRUM</p>
+                    <p class="text-[10px] text-gray-500 uppercase">Coursera</p>
                 </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU.jpeg">
-                    <p class="font-semibold text-gray-800">Introduction to Generative AI Learning Path</p>
-                    <span class="block text-xs text-gray-500 mt-1">Google Cloud | Jul 2025</span>
+                <!-- Card 4 -->
+                <div class="glass-card p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors certification-card" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU.jpeg">
+                    <p class="font-bold text-sm mb-1">GenAI Path</p>
+                    <p class="text-[10px] text-gray-500 uppercase">Google Cloud</p>
                 </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU/CERTIFICATE_LANDING_PAGE~D3VV0MH9L0OU.jpeg">
-                    <p class="font-semibold text-gray-800">Introduction to Generative AI</p>
-                    <span class="block text-xs text-gray-500 mt-1">ULSA | Jul 2025</span>
+                <!-- Card 5 -->
+                <div class="glass-card p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors certification-card" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~VCQQWX7V24G4/CERTIFICATE_LANDING_PAGE~VCQQWX7V24G4.jpeg">
+                    <p class="font-bold text-sm mb-1">Large Language Models</p>
+                    <p class="text-[10px] text-gray-500 uppercase">ULSA</p>
                 </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~VCQQWX7V24G4/CERTIFICATE_LANDING_PAGE~VCQQWX7V24G4.jpeg">
-                    <p class="font-semibold text-gray-800">Introduction to Large Language Models</p>
-                    <span class="block text-xs text-gray-500 mt-1">ULSA | Jul 2025</span>
+                <!-- Card 6 -->
+                <div class="glass-card p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors certification-card" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~V3JBB20T9NCE/CERTIFICATE_LANDING_PAGE~V3JBB20T9NCE.jpeg">
+                    <p class="font-bold text-sm mb-1">3D Modeling</p>
+                    <p class="text-[10px] text-gray-500 uppercase">Coursera</p>
                 </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~V3JBB20T9NCE/CERTIFICATE_LANDING_PAGE~V3JBB20T9NCE.jpeg">
-                    <p class="font-semibold text-gray-800">SketchUp: 3D Modeling</p>
-                    <span class="block text-xs text-gray-500 mt-1">Coursera | Jul 2025</span>
+                <!-- Card 7 -->
+                <div class="glass-card p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors certification-card" data-image-url="https://certificates.simplicdn.net/share/8414306_86308001748751728299.png">
+                    <p class="font-bold text-sm mb-1">NLP & Text Mining</p>
+                    <p class="text-[10px] text-gray-500 uppercase">Simplilearn</p>
                 </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://certificates.simplicdn.net/share/8414306_86308001748751728299.png">
-                    <p class="font-semibold text-gray-800">NLP and Text Mining</p>
-                    <span class="block text-xs text-gray-500 mt-1">Simplilearn | Jun 2025</span>
-                </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://certificates.simplicdn.net/share/8279545_86308001746014872591.png">
-                    <p class="font-semibold text-gray-800">Innovating with Google Cloud AI</p>
-                    <span class="block text-xs text-gray-500 mt-1">Simplilearn | Apr 2025</span>
-                </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://placehold.co/800x600/F9FAFB/111827?text=AI+and+ML+Cert">
-                    <p class="font-semibold text-gray-800">Certificate in AI and ML</p>
-                    <span class="block text-xs text-gray-500 mt-1">Upskill | Apr 2025</span>
-                </div>
-                <div class="card p-4 rounded-xl text-center text-sm certification-card cursor-pointer hover:border-black" data-image-url="https://placehold.co/800x600/F9FAFB/111827?text=Advanced+Excel+Cert">
-                    <p class="font-semibold text-gray-800">Certificate in Advanced Excel</p>
-                    <span class="block text-xs text-gray-500 mt-1">IINTM College | Jan 2025</span>
+                <!-- Card 8 -->
+                <div class="glass-card p-4 text-center cursor-pointer hover:border-indigo-500 transition-colors certification-card" data-image-url="https://placehold.co/800x600/0a0a0a/6366f1?text=Advanced+Excel">
+                    <p class="font-bold text-sm mb-1">Advanced Excel</p>
+                    <p class="text-[10px] text-gray-500 uppercase">IINTM</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Connect Section -->
-    <section id="contact" class="p-8 bg-gray-70">
-        <div class="container flex flex-col items-center text-center">
-            <h2 class="heading-section font-extrabold mb-8">CONTACT</h2>
-            <div class="flex flex-wrap justify-center gap-4 md:space-y-0 md:space-x-4 mb-8">
-                <!-- Social Media Buttons -->
-                <a href="https://www.linkedin.com/in/utkarsh-tripathi-94080335b/" target="_blank" class="flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-colors duration-300" style="background-color: var(--text-color); border: 2px solid var(--text-color); hover:background-color: var(--accent-color); hover:border-color: var(--accent-color);">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6 text-center">
+        <div class="max-w-4xl mx-auto reveal">
+            <h2 class="text-5xl md:text-7xl font-bold mb-10 tracking-tight">Ready to collaborate?</h2>
+            <div class="flex justify-center gap-6 mb-16">
+                <a href="https://www.linkedin.com/in/utkarsh-tripathi-94080335b/" target="_blank" class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white hover:text-black transition-all">
+                    <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://x.com/Utkarsh_atX?t=X9H8SD_Hhqrd0gYYYx6Aow&s=09" target="_blank" class="flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-colors duration-300" style="background-color: var(--text-color); border: 2px solid var(--text-color); hover:background-color: var(--accent-color); hover:border-color: var(--accent-color);">
+                <a href="https://x.com/Utkarsh_atX?t=X9H8SD_Hhqrd0gYYYx6Aow&s=09" target="_blank" class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white hover:text-black transition-all">
                     <i class="fab fa-x-twitter"></i>
-                    <span>X</span>
                 </a>
-                <a href="https://github.com/dashboard" target="_blank" class="flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-colors duration-300" style="background-color: var(--text-color); border: 2px solid var(--text-color); hover:background-color: var(--accent-color); hover:border-color: var(--accent-color);">
+                <a href="https://github.com/dashboard" target="_blank" class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white hover:text-black transition-all">
                     <i class="fab fa-github"></i>
-                    <span>GitHub</span>
                 </a>
-                <a href="mailto:tripathiutkarsh.tech@outlook.com" class="flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-colors duration-300" style="background-color: var(--accent-color); border: 2px solid var(--accent-color); hover:background-color: #E05A5A; hover:border-color: #E05A5A;">
+                <a href="mailto:tripathiutkarsh.tech@outlook.com" class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white hover:text-black transition-all">
                     <i class="fas fa-envelope"></i>
-                    <span>Email Me</span>
                 </a>
-                
-                <!-- This button is now removed from the contact section since it's in the About section -->
             </div>
-            <div class="text-xl font-semibold text-gray-700">
-                <!-- <p>tripathiutkarsh.tech@outlook.com</p> -->
-                <p>Designed and developed by Utkarsh Tripathi</p>
-            </div>
+            <p class="text-sm text-gray-600">© 2026 Utkarsh Tripathi. Crafted with precision.</p>
         </div>
     </section>
 
-    <!-- Certificate Modal -->
-    <div id="certificate-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center modal-overlay">
-        <div class="relative rounded-lg shadow-xl p-4 max-w-5xl mx-auto w-11/12 md:w-3/4 lg:w-1/2 modal-content">
-            <button id="modal-close" class="absolute top-2 right-4 text-3xl text-gray-800 hover:text-black transition-colors duration-200 focus:outline-none">&times;</button>
-            <img id="modal-image" src="" alt="Certificate" class="rounded-lg w-full h-auto">
+    <!-- Modal for Certifications -->
+    <div id="certificate-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="relative w-11/12 max-w-4xl glass-card p-2 rounded-2xl">
+            <button id="modal-close" class="absolute -top-12 right-0 text-white text-3xl hover:text-gray-300 transition-colors">&times;</button>
+            <img id="modal-image" src="" alt="Certificate" class="w-full h-auto rounded-xl">
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const sections = document.querySelectorAll('section');
-            const navDots = document.querySelectorAll('.nav-dot');
-            const observerOptions = {
-                rootMargin: '-50% 0px -50% 0px',
-                threshold: 0
-            };
-
+            // Scroll Reveal
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        navDots.forEach(dot => {
-                            dot.classList.remove('active');
-                            if (dot.getAttribute('href').substring(1) === entry.target.id) {
-                                dot.classList.add('active');
-                            }
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Nav Highlight
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.dock-item').forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
                         });
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.5 });
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-            
-            // New feature: Clickable certifications
-            const certificationCards = document.querySelectorAll('.certification-card');
+            document.querySelectorAll('section').forEach(section => navObserver.observe(section));
+
+            // Modal Logic
             const modal = document.getElementById('certificate-modal');
             const modalImage = document.getElementById('modal-image');
             const modalCloseButton = document.getElementById('modal-close');
 
-            // Function to show the modal
-            function showModal(imageUrl) {
-                modalImage.src = imageUrl;
-                modal.classList.remove('hidden');
-            }
-
-            // Function to hide the modal
-            function hideModal() {
-                modal.classList.add('hidden');
-                modalImage.src = ''; // Clear image to prevent flicker on next open
-            }
-
-            // Add click listeners to each certification card
-            certificationCards.forEach(card => {
+            document.querySelectorAll('.certification-card').forEach(card => {
                 card.addEventListener('click', () => {
-                    const imageUrl = card.getAttribute('data-image-url');
-                    showModal(imageUrl);
+                    modalImage.src = card.getAttribute('data-image-url');
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
                 });
             });
 
-            // Add click listener to the close button
-            modalCloseButton.addEventListener('click', hideModal);
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                modalImage.src = '';
+                document.body.style.overflow = 'auto';
+            };
 
-            // Hide modal if user clicks outside the image
-            modal.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    hideModal();
-                }
-            });
+            modalCloseButton.onclick = closeModal;
+            modal.onclick = (e) => { if (e.target === modal) closeModal(); };
         });
     </script>
 </body>
