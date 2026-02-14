@@ -6,7 +6,7 @@
     <title>Utkarsh Tripathi | UI Engineer & Data Analyst</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
@@ -94,6 +94,8 @@
             gap: 0.5rem;
             z-index: 100;
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+            max-width: 90vw;
+            overflow-x: auto;
         }
 
         .dock-item {
@@ -158,6 +160,15 @@
         .btn-shine:hover::before { left: 100%; }
         .btn-shine:hover { transform: scale(1.05); }
 
+        /* Custom Scrollbar for Dock */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
     </style>
 </head>
 <body class="pb-32"> <!-- Padding bottom for dock -->
@@ -166,9 +177,10 @@
     <div class="orb orb-2"></div>
 
     <!-- Floating Dock Navigation -->
-    <nav class="dock">
+    <nav class="dock no-scrollbar">
         <a href="#hero" class="dock-item active"><i class="fas fa-home md:hidden"></i><span class="hidden md:inline">Home</span></a>
         <a href="#about" class="dock-item"><i class="fas fa-user md:hidden"></i><span class="hidden md:inline">About</span></a>
+        <a href="#experience" class="dock-item"><i class="fas fa-briefcase md:hidden"></i><span class="hidden md:inline">Experience</span></a>
         <a href="#projects" class="dock-item"><i class="fas fa-layer-group md:hidden"></i><span class="hidden md:inline">Projects</span></a>
         <a href="#skills" class="dock-item"><i class="fas fa-code md:hidden"></i><span class="hidden md:inline">Stack</span></a>
         <a href="#contact" class="dock-item"><i class="fas fa-paper-plane md:hidden"></i><span class="hidden md:inline">Contact</span></a>
@@ -182,9 +194,9 @@
                      <img src="utkarshtripathiprofilepic.jpeg" alt="Utkarsh Tripathi" class="w-full h-full object-cover">
                 </div>
                 <div class="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium tracking-widest text-indigo-300 mb-6 uppercase">
-                    Available for Work
+                    AI/ML Intern @ DRDO
                 </div>
-                <h1 class="text-6xl md:text-8xl font-bold tracking-tight leading-none mb-6">
+                <h1 class="text-5xl md:text-8xl font-bold tracking-tight leading-none mb-6">
                     Designing <span class="text-gradient">Logic.</span> <br> Building <span class="text-gradient">Future.</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -249,6 +261,51 @@
         </div>
     </section>
 
+    <!-- Experience Section (Fixed Style) -->
+    <section id="experience" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-12 text-center reveal">Professional Journey</h2>
+            
+            <div class="grid gap-8 reveal">
+                <!-- DRDO Experience Card -->
+                <div class="glass-card p-8 md:p-12 relative overflow-hidden">
+                    <!-- Glow effect for "New" -->
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-600/30 rounded-full blur-3xl"></div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider mb-4">
+                                <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                                Current Role
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold text-white mb-2">AI/ML Intern</h3> 
+                            <p class="text-lg text-indigo-300 font-medium">Defence Research and Development Laboratory (DRDL) - DRDO</p>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <p class="text-xl font-bold text-white">Feb 2026 - Present</p>
+                            <p class="text-sm text-gray-400">New Delhi, India (On-site)</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8 border-t border-white/10 pt-8">
+                        <div class="md:col-span-2">
+                            <p class="text-gray-300 leading-relaxed mb-6">
+                                Working on AI/ML-based model training, focusing on critical defense R&D initiatives. Responsibilities include end-to-end data preprocessing pipelines, developing robust models, and conducting rigorous performance evaluation using Python in a secure environment.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-gray-300">Artificial Intelligence</span>
+                                <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-gray-300">Python</span>
+                                <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-gray-300">Machine Learning</span>
+                                <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-gray-300">Data Preprocessing</span>
+                            </div>
+                        </div>
+                        <!-- You can add a link here if you have a public post/doc about this -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-6">
         <div class="max-w-6xl mx-auto">
@@ -258,7 +315,6 @@
                 <!-- Project 1: Elevate -->
                 <div class="glass-card p-6 flex flex-col h-full reveal group">
                     <div class="aspect-video bg-gradient-to-br from-gray-800 to-black rounded-xl mb-6 overflow-hidden relative">
-                         <!-- Hover Overlay -->
                         <div class="absolute inset-0 bg-indigo-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <span class="text-white font-bold tracking-widest border border-white px-4 py-2 rounded-full">VIEW</span>
                         </div>
@@ -269,26 +325,26 @@
                     <h3 class="text-xl font-bold mb-2">Elevate</h3>
                     <p class="text-sm text-gray-400 mb-6 flex-grow">A comprehensive minor project focusing on high-quality frontend development and intuitive user interface design patterns.</p>
                     <div class="flex gap-4 pt-4 border-t border-white/5">
-                        <a href="#" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-indigo-400">Live</a>
-                        <a href="https://github.com/UtkarshTripathi-teach/Elevate_minor_project" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
+                        <a href="https://elevateminorproject.streamlit.app/" class="text-xs font-bold uppercase tracking-wider text-white hover:text-indigo-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/Elevate_minor_project" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
                     </div>
                 </div>
 
                 <!-- Project 2: CarDekho EDA -->
                 <div class="glass-card p-6 flex flex-col h-full reveal group" style="transition-delay: 0.1s">
                     <div class="aspect-video bg-gradient-to-br from-gray-800 to-black rounded-xl mb-6 overflow-hidden relative">
-                        <div class="absolute inset-0 bg-emerald-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div class="absolute inset-0 bg-orange-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <span class="text-white font-bold tracking-widest border border-white px-4 py-2 rounded-full">VIEW</span>
                         </div>
                         <div class="absolute bottom-4 left-4">
-                             <i class="fas fa-chart-bar text-3xl text-gray-600 group-hover:text-white transition-colors"></i>
+                             <i class="fas fa-chart-pie text-3xl text-gray-600 group-hover:text-white transition-colors"></i>
                         </div>
                     </div>
                     <h3 class="text-xl font-bold mb-2">CarDekho EDA</h3>
                     <p class="text-sm text-gray-400 mb-6 flex-grow">In-depth Exploratory Data Analysis identifying market trends and consumer behavior through advanced visualization.</p>
                     <div class="flex gap-4 pt-4 border-t border-white/5">
-                        <a href="#" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-emerald-400">Live</a>
-                        <a href="https://github.com/UtkarshTripathi-teach/CarDekho-EDA-Project-by-Utkarsh-Tripathi" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/CarDekho-EDA-Project-by-Utkarsh-Tripathi" class="text-xs font-bold uppercase tracking-wider text-white hover:text-orange-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/CarDekho-EDA-Project-by-Utkarsh-Tripathi" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
                     </div>
                 </div>
 
@@ -305,8 +361,8 @@
                     <h3 class="text-xl font-bold mb-2">Weather App</h3>
                     <p class="text-sm text-gray-400 mb-6 flex-grow">Real-time weather application showcasing API integration, asynchronous JS, and dynamic DOM manipulation.</p>
                     <div class="flex gap-4 pt-4 border-t border-white/5">
-                        <a href="https://utkarshtripathi-teach.github.io/Weather_App_by_Utkarsh_Tripathi/" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-blue-400">Live</a>
-                        <a href="https://github.com/UtkarshTripathi-teach/Weather_App_by_Utkarsh_Tripathi" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
+                        <a href="https://utkarshtripathi-teach.github.io/Weather_App_by_Utkarsh_Tripathi/" class="text-xs font-bold uppercase tracking-wider text-white hover:text-blue-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/Weather_App_by_Utkarsh_Tripathi" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
                     </div>
                 </div>
                  
@@ -323,8 +379,8 @@
                     <h3 class="text-xl font-bold mb-2">California Housing ML</h3>
                     <p class="text-sm text-gray-400 mb-6 flex-grow">Regression model predicting housing prices with high accuracy using feature engineering and Scikit-learn.</p>
                     <div class="flex gap-4 pt-4 border-t border-white/5">
-                        <a href="https://californiahousepricepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-purple-400">Live</a>
-                        <a href="https://github.com/UtkarshTripathi-teach/California_House_Price_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
+                        <a href="https://californiahousepricepredictionmlmodel-byutkarshtripathi.streamlit.app/" class="text-xs font-bold uppercase tracking-wider text-white hover:text-purple-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/California_House_Price_Prediction_ML_Model_by_Utkarsh_Tripathi" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
                     </div>
                 </div>
 
@@ -341,8 +397,8 @@
                     <h3 class="text-xl font-bold mb-2">Heart Disease AI</h3>
                     <p class="text-sm text-gray-400 mb-6 flex-grow">Classification model for early detection of heart disease using patient data metrics.</p>
                     <div class="flex gap-4 pt-4 border-t border-white/5">
-                        <a href="https://heartdiseasepredictionmlmodel-byutkarshtripathi.streamlit.app/" target="_blank" class="text-xs font-bold uppercase tracking-wider text-white hover:text-red-400">Live</a>
-                        <a href="https://github.com/UtkarshTripathi-teach/Heart_Disease_Prediction_ML_Model_by_Utkarsh_Tripathi" target="_blank" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
+                        <a href="https://heartdiseasepredictionmlmodel-byutkarshtripathi.streamlit.app/" class="text-xs font-bold uppercase tracking-wider text-white hover:text-red-400">Live</a>
+                        <a href="https://github.com/UtkarshTripathi-teach/Heart_Disease_Prediction_ML_Model_by_Utkarsh_Tripathi" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-white">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -451,29 +507,24 @@
     <!-- Contact Section -->
     <section id="contact" class="py-32 px-6 text-center">
         <div class="max-w-4xl mx-auto reveal">
-            <h2 class="text-5xl md:text-7xl font-bold mb-10 tracking-tight">Ready to collaborate?</h2>
-            <div class="flex justify-center gap-6 mb-16">
-                <a href="https://www.linkedin.com/in/utkarsh-tripathi-94080335b/" target="_blank" class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white hover:text-black transition-all">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://x.com/Utkarsh_atX?t=X9H8SD_Hhqrd0gYYYx6Aow&s=09" target="_blank" class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white hover:text-black transition-all">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-                <a href="https://github.com/dashboard" target="_blank" class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white hover:text-black transition-all">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:tripathiutkarsh.tech@outlook.com" class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-xl hover:bg-white hover:text-black transition-all">
-                    <i class="fas fa-envelope"></i>
-                </a>
+            <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-12">Let's build something <span class="text-gradient">great.</span></h2>
+            <div class="flex flex-wrap justify-center gap-10 mb-16">
+                <a href="https://www.linkedin.com/in/utkarsh-tripathi-94080335b/" target="_blank" class="text-2xl text-gray-400 hover:text-indigo-500 transition-all"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/Utkarsh_atX?t=X9H8SD_Hhqrd0gYYYx6Aow&s=09" target="_blank" class="text-2xl text-gray-400 hover:text-white transition-all"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://github.com/dashboard" target="_blank" class="text-2xl text-gray-400 hover:text-white transition-all"><i class="fab fa-github"></i></a>
+                <a href="mailto:tripathiutkarsh.tech@outlook.com" class="text-2xl text-gray-400 hover:text-red-500 transition-all"><i class="fas fa-envelope"></i></a>
             </div>
-            <p class="text-sm text-gray-600">© 2026 Utkarsh Tripathi. Crafted with precision.</p>
+            <div class="pt-12 border-t border-white/10">
+                <p class="text-lg font-bold mb-1 text-white">tripathiutkarsh.tech@outlook.com</p>
+                <p class="text-sm text-gray-500">© 2026 Utkarsh Tripathi</p>
+            </div>
         </div>
     </section>
 
     <!-- Modal for Certifications -->
-    <div id="certificate-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm">
-        <div class="relative w-11/12 max-w-4xl glass-card p-2 rounded-2xl">
-            <button id="modal-close" class="absolute -top-12 right-0 text-white text-3xl hover:text-gray-300 transition-colors">&times;</button>
+    <div id="certificate-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="relative w-full max-w-4xl glass-card p-2 rounded-2xl shadow-2xl transform transition-all scale-95 opacity-0" id="modal-content">
+            <button id="modal-close" class="absolute -top-12 right-0 md:-right-12 text-white text-3xl hover:text-gray-300 transition-colors">&times;</button>
             <img id="modal-image" src="" alt="Certificate" class="w-full h-auto rounded-xl">
         </div>
     </div>
@@ -506,6 +557,7 @@
 
             // Modal Logic
             const modal = document.getElementById('certificate-modal');
+            const modalContent = document.getElementById('modal-content');
             const modalImage = document.getElementById('modal-image');
             const modalCloseButton = document.getElementById('modal-close');
 
@@ -513,14 +565,23 @@
                 card.addEventListener('click', () => {
                     modalImage.src = card.getAttribute('data-image-url');
                     modal.classList.remove('hidden');
+                    // Small animation for modal
+                    setTimeout(() => {
+                        modalContent.classList.remove('scale-95', 'opacity-0');
+                        modalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
                     document.body.style.overflow = 'hidden';
                 });
             });
 
             const closeModal = () => {
-                modal.classList.add('hidden');
-                modalImage.src = '';
-                document.body.style.overflow = 'auto';
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                modalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modalImage.src = '';
+                    document.body.style.overflow = 'auto';
+                }, 200);
             };
 
             modalCloseButton.onclick = closeModal;
