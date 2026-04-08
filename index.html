@@ -33,7 +33,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: url("https://grainy-gradients.vercel.app/noise.svg");
             opacity: 0.05;
-            z-index: 50;
+            z-index: -1;
             pointer-events: none;
         }
 
@@ -45,7 +45,7 @@
             position: fixed;
             border-radius: 50%;
             filter: blur(100px);
-            z-index: -1;
+            z-index: -2;
             opacity: 0.4;
             animation: float 20s infinite alternate;
         }
@@ -121,7 +121,7 @@
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .reveal.active {
+        .reveal.active, .force-visible .reveal {
             opacity: 1;
             transform: translateY(0);
         }
@@ -529,34 +529,34 @@
     </section>
 
     <!-- Modal for Certifications -->
-    <div id="certificate-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm">
-        <div class="relative bg-white p-4 max-w-4xl w-11/12 rounded-3xl shadow-2xl">
-            <button id="modal-close" class="absolute -top-12 right-0 text-white text-3xl hover:scale-110 transition-all">&times;</button>
-            <img id="modal-image" src="" alt="Certificate" class="rounded-2xl w-full h-auto">
+    <div id="certificate-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="relative w-full max-w-4xl glass-card p-2 rounded-2xl shadow-2xl transform transition-all scale-95 opacity-0" id="modal-content">
+            <button id="modal-close" class="absolute -top-12 right-0 md:-right-12 text-white text-3xl hover:text-gray-300 transition-colors">&times;</button>
+            <img id="modal-image" src="" alt="Certificate" class="w-full h-auto rounded-xl">
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Scroll reveal animation
-            const observerOptions = { threshold: 0.1 };
+            // Scroll Reveal
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.05 });
 
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-            // Nav link active state highlighting
-            const sectionObserverOptions = { threshold: 0.5 };
-            const sectionObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        document.querySelectorAll('.dock-item').forEach(link => {
-                            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+            // Fallback to force content visibility in preview environments
+            setTimeout(() => {
+                document.body.classList.add('force-visible');
+            }, 800);
+
+            // Nav Highlight
+            const navObserver = new IntersectionObserver((entries) => {
                         });
                     }
                 });
