@@ -557,14 +557,18 @@
 
             // Nav Highlight
             const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.dock-item').forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
                         });
                     }
                 });
-            }, sectionObserverOptions);
+            }, { threshold: 0.5 });
 
-            document.querySelectorAll('section').forEach(section => sectionObserver.observe(section));
+            document.querySelectorAll('section').forEach(section => navObserver.observe(section));
 
-            // Modal logic
+            // Modal Logic
             const modal = document.getElementById('certificate-modal');
             const modalImage = document.getElementById('modal-image');
             const modalCloseButton = document.getElementById('modal-close');
